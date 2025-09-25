@@ -12,7 +12,7 @@
         "postinstall": "prisma generate",
         "db:seed:rdi": "tsx prisma/seed.ts --rdi",
         "test": "tsx --test tests/**/*.test.ts",
-        "seed:recipes": "tsx scripts/seed-recipes.ts"
+        "seed:recipes": "node scripts/seed-recipes.js"
     },
     "dependencies": {
         "@prisma/client": "^6.16.2",
