@@ -1,0 +1,115 @@
+﻿import { NextRequest, NextResponse } from 'next/server';
+import { Prisma, TagType } from '@prisma/client';
+import { prisma } from '@/lib/prisma';
+
+const DEFAULT_LIMIT = 20;
+
+function parseTags(param: string | null): string[] {
+  if (!param) return [];
+  return param
+    .split(',')
+    .map((item) => item.trim().toUpperCase())
+    .filter(Boolean);
+}
+
+export async function GET(request: NextRequest) {
+  const search = request.nextUrl.searchParams;
+  const query = search.get('query');
+  const functional = parseTags(search.get('functional'));
+  const flavor = parseTags(search.get('flavor'));
+  const limit = Number.parseInt(search.get('limit') ?? '', 10);
+  const page = Number.parseInt(search.get('page') ?? '1', 10);
+  const take = Number.isFinite(limit) && limit > 0 ? Math.min(limit, 50) : DEFAULT_LIMIT;
+  const skip = Math.max(page - 1, 0) * take;
+
+  const andConditions: Prisma.RecipeWhereInput[] = [];
+
+  if (query) {
+    andConditions.push({
+      OR: [
+        { name: { contains: query } },
+        {
+          ingredients: {
+            some: {
+              ingredient: {
+                name: { contains: query },
+              },
+            },
+          },
+        },
+      ],
+    });
+  }
+
+  for (const tag of functional) {
+    andConditions.push({
+      tags: {
+        some: {
+          tag: {
+            name: tag,
+            type: TagType.FUNCTIONAL,
+          },
+        },
+      },
+    });
+  }
+
+  for (const tag of flavor) {
+    andConditions.push({
+      tags: {
+        some: {
+          tag: {
+            name: tag,
+            type: TagType.FLAVOR,
+          },
+        },
+      },
+    });
+  }
+
+  const recipes = await prisma.recipe.findMany({
+    where: andConditions.length ? { AND: andConditions } : undefined,
+    include: {
+      tags: {
+        include: { tag: true },
+      },
+      ingredients: {
+        include: {
+          ingredient: {
+            select: { id: true, name: true },
+          },
+        },
+      },
+    },
+    orderBy: { name: 'asc' },
+    take,
+    skip,
+  });
+
+  const payload = recipes.map((recipe) => ({
+    id: recipe.id,
+    name: recipe.name,
+    category: recipe.category,
+    servings: recipe.servings,
+    tags: {
+      functional: recipe.tags
+        .filter((entry) => entry.tag?.type === TagType.FUNCTIONAL)
+        .map((entry) => entry.tag!.name),
+      flavor: recipe.tags
+        .filter((entry) => entry.tag?.type === TagType.FLAVOR)
+        .map((entry) => entry.tag!.name),
+    },
+    ingredientIds: recipe.ingredients
+      .map((item) => item.ingredient?.id)
+      .filter((id): id is number => typeof id === 'number'),
+  }));
+
+  return NextResponse.json({
+    items: payload,
+    pagination: {
+      page: Math.max(page, 1),
+      limit: take,
+      count: payload.length,
+    },
+  });
+}

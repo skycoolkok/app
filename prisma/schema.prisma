@@ -1,0 +1,220 @@
+datasource db {
+  provider = "sqlite"
+  // Database URL is configured via .env DATABASE_URL
+  url      = env("DATABASE_URL")
+}
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+enum TagType {
+  FUNCTIONAL
+  FLAVOR
+}
+
+enum Sex {
+  MALE
+  FEMALE
+}
+
+model Ingredient {
+  id           Int     @id @default(autoincrement())
+  name         String  @unique
+  category     String?
+  default_unit String?
+  notes        String?
+
+  recipes     RecipeIngredient[]
+  nutrition   NutritionFact[]
+  aliases     IngredientAlias[]
+  intakeItems IntakeItem[]
+
+  @@map("ingredients")
+}
+
+model Recipe {
+  id          Int     @id @default(autoincrement())
+  name        String  @unique
+  category    String?
+  servings    Float?
+  description String?
+  notes       String?
+  source      String?
+
+  ingredients RecipeIngredient[]
+  tags        RecipeTag[]
+  favorites   Favorite[]
+  intakeItems IntakeItem[]
+  nutrition_totals RecipeTotals?
+
+  @@map("recipes")
+}
+
+model RecipeIngredient {
+  recipe_id         Int
+  ingredient_id     Int
+  quantity          Float?
+  unit              String?
+  preparation_notes String?
+
+  recipe     Recipe     @relation(fields: [recipe_id], references: [id], onDelete: Cascade)
+  ingredient Ingredient @relation(fields: [ingredient_id], references: [id], onDelete: Cascade)
+
+  @@id([recipe_id, ingredient_id])
+
+  @@map("recipe_ingredients")
+}
+
+model NutritionFact {
+  id               Int      @id @default(autoincrement())
+  ingredient_id    Int
+  per_amount_value Float
+  per_amount_unit  String
+  calories_kcal    Float?
+  protein_g        Float?
+  fat_g            Float?
+  carbs_g          Float?
+  fiber_g          Float?
+  vitamin_c_mg     Float?
+  vitamin_a_ug     Float?
+  iron_mg          Float?
+  calcium_mg       Float?
+  potassium_mg     Float?
+  sodium_mg        Float?
+  source           String?
+  notes            String?
+  created_at       DateTime @default(now())
+
+  ingredient Ingredient @relation(fields: [ingredient_id], references: [id], onDelete: Cascade)
+
+  @@map("nutrition_facts")
+}
+
+model IntakeLog {
+  id        Int          @id @default(autoincrement())
+  user_id   Int?
+  logged_at DateTime     @default(now())
+  notes     String?
+  items     IntakeItem[]
+
+  user User? @relation(fields: [user_id], references: [id], onDelete: SetNull)
+
+  @@map("intake_logs")
+}
+
+model IntakeItem {
+  id            Int     @id @default(autoincrement())
+  intake_log_id Int
+  ingredient_id Int?
+  recipe_id     Int?
+  amount_value  Float?
+  amount_unit   String?
+  notes         String?
+
+  // Custom items like outside drinks can store a name and optional nutrition
+  custom_nutrition CustomNutrition?
+
+  log        IntakeLog   @relation(fields: [intake_log_id], references: [id], onDelete: Cascade)
+  ingredient Ingredient? @relation(fields: [ingredient_id], references: [id], onDelete: Cascade)
+  recipe     Recipe?     @relation(fields: [recipe_id], references: [id], onDelete: Cascade)
+
+  @@map("intake_items")
+}
+
+// ---- User profiles, favorites, tags, RDI, and custom nutrition ----
+
+model User {
+  id         Int         @id @default(autoincrement())
+  anon_id    String?     @unique
+  age        Int?
+  sex        Sex?
+  timezone   String      @default("Asia/Taipei")
+  intakeLogs IntakeLog[]
+  favorites  Favorite[]
+  created_at DateTime    @default(now())
+}
+
+model Favorite {
+  user_id    Int
+  recipe_id  Int
+  created_at DateTime @default(now())
+
+  user   User   @relation(fields: [user_id], references: [id], onDelete: Cascade)
+  recipe Recipe @relation(fields: [recipe_id], references: [id], onDelete: Cascade)
+
+  @@id([user_id, recipe_id])
+}
+
+model Tag {
+  id      Int         @id @default(autoincrement())
+  name    String
+  type    TagType
+  recipes RecipeTag[]
+
+  @@unique([name, type])
+}
+
+model RecipeTag {
+  recipe_id Int
+  tag_id    Int
+
+  recipe Recipe @relation(fields: [recipe_id], references: [id], onDelete: Cascade)
+  tag    Tag    @relation(fields: [tag_id], references: [id], onDelete: Cascade)
+
+  @@id([recipe_id, tag_id])
+}
+
+model IngredientAlias {
+  id            Int    @id @default(autoincrement())
+  ingredient_id Int
+  alias         String @unique
+
+  ingredient Ingredient @relation(fields: [ingredient_id], references: [id], onDelete: Cascade)
+}
+
+model CustomNutrition {
+  id                Int    @id @default(autoincrement())
+  intake_item_id    Int    @unique
+  base_amount_value Float
+  base_amount_unit  String
+
+  calories_kcal Float?
+  protein_g     Float?
+  fat_g         Float?
+  carbs_g       Float?
+  fiber_g       Float?
+  vitamin_c_mg  Float?
+  vitamin_a_ug  Float?
+  iron_mg       Float?
+  calcium_mg    Float?
+  potassium_mg  Float?
+  sodium_mg     Float?
+  source        String?
+  notes         String?
+
+  intake_item IntakeItem @relation(fields: [intake_item_id], references: [id], onDelete: Cascade)
+}
+
+model RdiStandard {
+  id          Int    @id @default(autoincrement())
+  nutrient    String
+  unit        String
+  male_value  Float?
+  female_value Float?
+  source      String?
+  created_at  DateTime @default(now())
+
+  @@unique([nutrient, unit])
+}
+
+model RecipeTotals {
+  recipe_id Int    @id
+  totals    Json
+  updated_at DateTime @updatedAt
+
+  recipe Recipe @relation(fields: [recipe_id], references: [id], onDelete: Cascade)
+
+  @@map("recipe_totals")
+}
+

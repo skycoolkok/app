@@ -1,0 +1,11 @@
+{
+  "apple_piece": { "to": "g", "factor": 150 },
+  "apple_顆": { "to": "g", "factor": 150 },
+  "蘋果_piece": { "to": "g", "factor": 150 },
+  "蘋果_顆": { "to": "g", "factor": 150 },
+  "cup_ml": 240,
+  "cups_ml": 240,
+  "杯_ml": 240,
+  "slice_g": { "to": "g", "factor": 5 },
+  "片_g": { "to": "g", "factor": 5 }
+}

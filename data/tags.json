@@ -1,0 +1,17 @@
+{
+  "functional": [
+    "FOR_DIET",
+    "BEAUTY",
+    "DETOX",
+    "ENERGY"
+  ],
+  "flavor": [
+    "SOUR",
+    "SWEET",
+    "BITTER",
+    "HERBAL",
+    "FRESH",
+    "STRONG"
+  ]
+}
+

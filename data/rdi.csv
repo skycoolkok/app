@@ -1,0 +1,13 @@
+nutrient,unit,adult_male,adult_female,source
+calories,kcal,2000,1800,WHO+Taiwan
+protein,g,60,46,Taiwan DRIs
+fat,g,70,60,WHO
+carbohydrate,g,300,260,Taiwan DRIs
+fiber,g,25,20,Taiwan DRIs
+vitamin_c,mg,90,75,Taiwan DRIs
+vitamin_a,繕g,900,700,Taiwan DRIs
+calcium,mg,1000,1000,Taiwan DRIs
+iron,mg,10,18,Taiwan DRIs
+potassium,mg,3500,3500,WHO
+sodium,mg,2000,2000,WHO
+

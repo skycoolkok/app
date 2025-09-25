@@ -1,0 +1,266 @@
+
+> juice-health-app@0.1.0 dev
+> next dev
+
+   ▲ Next.js 15.5.3
+   - Local:        http://localhost:3000
+   - Network:      http://192.168.2.100:3000
+   - Environments: .env
+
+ ✓ Starting...
+ ✓ Ready in 1962ms
+ ✓ Compiled /api/health in 476ms (297 modules)
+ GET /api/health 200 in 669ms
+ ✓ Compiled /api/dashboard/daily in 307ms (319 modules)
+prisma:query SELECT `main`.`User`.`id`, `main`.`User`.`anon_id`, `main`.`User`.`age`, `main`.`User`.`sex`, `main`.`User`.`timezone`, `main`.`User`.`created_at` FROM `main`.`User` WHERE 1=1 ORDER BY `main`.`User`.`id` ASC LIMIT ? OFFSET ?
+prisma:error 
+Invalid `prisma.user.findFirst()` invocation:
+
+
+The table `main.User` does not exist in the current database.
+[resolveUserContext] fallback to defaults Error [PrismaClientKnownRequestError]: 
+Invalid `prisma.user.findFirst()` invocation:
+
+
+The table `main.User` does not exist in the current database.
+    at async resolveUserContext (src\lib\rdi.ts:21:9)
+    at async GET (src\app\api\dashboard\daily\route.ts:21:19)
+  19 |     const user = userId
+  20 |       ? await prisma.user.findUnique({ where: { id: userId } })
+> 21 |       : await prisma.user.findFirst({ orderBy: { id: 'asc' } });
+     |         ^
+  22 |
+  23 |     if (user) {
+  24 |       return { {
+  code: 'P2021',
+  meta: [Object],
+  clientVersion: '6.16.2'
+}
+prisma:query SELECT `main`.`intake_logs`.`id`, `main`.`intake_logs`.`user_id`, `main`.`intake_logs`.`logged_at`, `main`.`intake_logs`.`notes` FROM `main`.`intake_logs` WHERE (`main`.`intake_logs`.`logged_at` >= ? AND `main`.`intake_logs`.`logged_at` < ?) ORDER BY `main`.`intake_logs`.`logged_at` ASC LIMIT ? OFFSET ?
+prisma:query SELECT `main`.`intake_items`.`id`, `main`.`intake_items`.`intake_log_id`, `main`.`intake_items`.`ingredient_id`, `main`.`intake_items`.`recipe_id`, `main`.`intake_items`.`amount_value`, `main`.`intake_items`.`amount_unit`, `main`.`intake_items`.`notes` FROM `main`.`intake_items` WHERE `main`.`intake_items`.`intake_log_id` IN (?) LIMIT ? OFFSET ?
+prisma:query SELECT `main`.`recipes`.`id`, `main`.`recipes`.`name`, `main`.`recipes`.`category`, `main`.`recipes`.`servings`, `main`.`recipes`.`description`, `main`.`recipes`.`notes`, `main`.`recipes`.`source` FROM `main`.`recipes` WHERE `main`.`recipes`.`id` IN (?) LIMIT ? OFFSET ?
+prisma:query SELECT `main`.`recipe_ingredients`.`recipe_id`, `main`.`recipe_ingredients`.`ingredient_id`, `main`.`recipe_ingredients`.`quantity`, `main`.`recipe_ingredients`.`unit`, `main`.`recipe_ingredients`.`preparation_notes` FROM `main`.`recipe_ingredients` WHERE `main`.`recipe_ingredients`.`recipe_id` IN (?) LIMIT ? OFFSET ?
+prisma:query SELECT `main`.`ingredients`.`id`, `main`.`ingredients`.`name`, `main`.`ingredients`.`category`, `main`.`ingredients`.`default_unit`, `main`.`ingredients`.`notes` FROM `main`.`ingredients` WHERE `main`.`ingredients`.`id` IN (?,?) LIMIT ? OFFSET ?
+prisma:query SELECT `main`.`nutrition_facts`.`id`, `main`.`nutrition_facts`.`ingredient_id`, `main`.`nutrition_facts`.`per_amount_value`, `main`.`nutrition_facts`.`per_amount_unit`, `main`.`nutrition_facts`.`calories_kcal`, `main`.`nutrition_facts`.`protein_g`, `main`.`nutrition_facts`.`fat_g`, `main`.`nutrition_facts`.`carbs_g`, `main`.`nutrition_facts`.`fiber_g`, `main`.`nutrition_facts`.`vitamin_c_mg`, `main`.`nutrition_facts`.`vitamin_a_ug`, `main`.`nutrition_facts`.`iron_mg`, `main`.`nutrition_facts`.`calcium_mg`, `main`.`nutrition_facts`.`potassium_mg`, `main`.`nutrition_facts`.`sodium_mg`, `main`.`nutrition_facts`.`source`, `main`.`nutrition_facts`.`notes`, `main`.`nutrition_facts`.`created_at` FROM `main`.`nutrition_facts` WHERE `main`.`nutrition_facts`.`ingredient_id` IN (?,?) ORDER BY `main`.`nutrition_facts`.`created_at` DESC LIMIT ? OFFSET ?
+prisma:query SELECT `main`.`CustomNutrition`.`id`, `main`.`CustomNutrition`.`intake_item_id`, `main`.`CustomNutrition`.`base_amount_value`, `main`.`CustomNutrition`.`base_amount_unit`, `main`.`CustomNutrition`.`calories_kcal`, `main`.`CustomNutrition`.`protein_g`, `main`.`CustomNutrition`.`fat_g`, `main`.`CustomNutrition`.`carbs_g`, `main`.`CustomNutrition`.`fiber_g`, `main`.`CustomNutrition`.`vitamin_c_mg`, `main`.`CustomNutrition`.`vitamin_a_ug`, `main`.`CustomNutrition`.`iron_mg`, `main`.`CustomNutrition`.`calcium_mg`, `main`.`CustomNutrition`.`potassium_mg`, `main`.`CustomNutrition`.`sodium_mg`, `main`.`CustomNutrition`.`source`, `main`.`CustomNutrition`.`notes` FROM `main`.`CustomNutrition` WHERE `main`.`CustomNutrition`.`intake_item_id` IN (?) LIMIT ? OFFSET ?
+prisma:error 
+Invalid `prisma.intakeLog.findMany()` invocation:
+
+
+The table `main.CustomNutrition` does not exist in the current database.
+Error [PrismaClientKnownRequestError]: 
+Invalid `prisma.intakeLog.findMany()` invocation:
+
+
+The table `main.CustomNutrition` does not exist in the current database.
+    at async calculateIntakeTotals (src\lib\intakes.ts:257:16)
+    at async GET (src\app\api\dashboard\daily\route.ts:30:18)
+  255 |   end: Date;
+  256 | }): Promise<NutrientTotals> {
+> 257 |   const logs = await fetchLogsWithinRange(options);
+      |                ^
+  258 |   let totals = createEmptyTotals();
+  259 |   for (const log of logs) {
+  260 |     const addition = aggregateIntakeItems(log.items); {
+  code: 'P2021',
+  meta: [Object],
+  clientVersion: '6.16.2'
+}
+ GET /api/dashboard/daily?date=2025-09-23 500 in 754ms
+ ✓ Compiled /api/logs in 251ms (315 modules)
+ ⨯ Error: Cannot find module '../../../webpack-runtime.js'
+Require stack:
+- c:\Users\User\Desktop\app\.next\server\app\api\logs\route.js
+- c:\Users\User\Desktop\app\node_modules\next\dist\server\require.js
+- c:\Users\User\Desktop\app\node_modules\next\dist\server\load-components.js
+- c:\Users\User\Desktop\app\node_modules\next\dist\build\utils.js
+- c:\Users\User\Desktop\app\node_modules\next\dist\build\swc\options.js
+- c:\Users\User\Desktop\app\node_modules\next\dist\build\swc\index.js
+- c:\Users\User\Desktop\app\node_modules\next\dist\build\next-config-ts\transpile-config.js
+- c:\Users\User\Desktop\app\node_modules\next\dist\server\config.js
+- c:\Users\User\Desktop\app\node_modules\next\dist\server\next.js
+- c:\Users\User\Desktop\app\node_modules\next\dist\server\lib\start-server.js
+    at <unknown> (c:\Users\User\Desktop\app\.next\server\app\api\logs\route.js:237:27)
+    at Object.<anonymous> (c:\Users\User\Desktop\app\.next\server\app\api\logs\route.js:243:3) {
+  code: 'MODULE_NOT_FOUND',
+  requireStack: [Array],
+  page: '/api/logs'
+}
+ ○ Compiling /_error ...
+ ✓ Compiled /_error in 2.5s (655 modules)
+ ⨯ Error: Cannot find module '../webpack-runtime.js'
+Require stack:
+- c:\Users\User\Desktop\app\.next\server\pages\_document.js
+- c:\Users\User\Desktop\app\node_modules\next\dist\server\require.js
+- c:\Users\User\Desktop\app\node_modules\next\dist\server\load-components.js
+- c:\Users\User\Desktop\app\node_modules\next\dist\build\utils.js
+- c:\Users\User\Desktop\app\node_modules\next\dist\build\swc\options.js
+- c:\Users\User\Desktop\app\node_modules\next\dist\build\swc\index.js
+- c:\Users\User\Desktop\app\node_modules\next\dist\build\next-config-ts\transpile-config.js
+- c:\Users\User\Desktop\app\node_modules\next\dist\server\config.js
+- c:\Users\User\Desktop\app\node_modules\next\dist\server\next.js
+- c:\Users\User\Desktop\app\node_modules\next\dist\server\lib\start-server.js
+    at <unknown> (c:\Users\User\Desktop\app\.next\server\pages\_document.js:60:27)
+    at Object.<anonymous> (c:\Users\User\Desktop\app\.next\server\pages\_document.js:66:3) {
+  code: 'MODULE_NOT_FOUND',
+  requireStack: [Array]
+}
+ POST /api/logs 500 in 4111ms
+ ⨯ Error: Cannot find module '../../../webpack-runtime.js'
+Require stack:
+- c:\Users\User\Desktop\app\.next\server\app\api\logs\route.js
+- c:\Users\User\Desktop\app\node_modules\next\dist\server\require.js
+- c:\Users\User\Desktop\app\node_modules\next\dist\server\load-components.js
+- c:\Users\User\Desktop\app\node_modules\next\dist\build\utils.js
+- c:\Users\User\Desktop\app\node_modules\next\dist\build\swc\options.js
+- c:\Users\User\Desktop\app\node_modules\next\dist\build\swc\index.js
+- c:\Users\User\Desktop\app\node_modules\next\dist\build\next-config-ts\transpile-config.js
+- c:\Users\User\Desktop\app\node_modules\next\dist\server\config.js
+- c:\Users\User\Desktop\app\node_modules\next\dist\server\next.js
+- c:\Users\User\Desktop\app\node_modules\next\dist\server\lib\start-server.js
+    at <unknown> (c:\Users\User\Desktop\app\.next\server\app\api\logs\route.js:237:27)
+    at Object.<anonymous> (c:\Users\User\Desktop\app\.next\server\app\api\logs\route.js:243:3) {
+  code: 'MODULE_NOT_FOUND',
+  requireStack: [Array],
+  page: '/api/logs'
+}
+ ⨯ Error: Cannot find module '../webpack-runtime.js'
+Require stack:
+- c:\Users\User\Desktop\app\.next\server\pages\_document.js
+- c:\Users\User\Desktop\app\node_modules\next\dist\server\require.js
+- c:\Users\User\Desktop\app\node_modules\next\dist\server\load-components.js
+- c:\Users\User\Desktop\app\node_modules\next\dist\build\utils.js
+- c:\Users\User\Desktop\app\node_modules\next\dist\build\swc\options.js
+- c:\Users\User\Desktop\app\node_modules\next\dist\build\swc\index.js
+- c:\Users\User\Desktop\app\node_modules\next\dist\build\next-config-ts\transpile-config.js
+- c:\Users\User\Desktop\app\node_modules\next\dist\server\config.js
+- c:\Users\User\Desktop\app\node_modules\next\dist\server\next.js
+- c:\Users\User\Desktop\app\node_modules\next\dist\server\lib\start-server.js
+    at <unknown> (c:\Users\User\Desktop\app\.next\server\pages\_document.js:60:27)
+    at Object.<anonymous> (c:\Users\User\Desktop\app\.next\server\pages\_document.js:66:3) {
+  code: 'MODULE_NOT_FOUND',
+  requireStack: [Array]
+}
+ POST /api/logs 500 in 73ms
+ ⨯ Error: Cannot find module '../../../webpack-runtime.js'
+Require stack:
+- c:\Users\User\Desktop\app\.next\server\app\api\logs\route.js
+- c:\Users\User\Desktop\app\node_modules\next\dist\server\require.js
+- c:\Users\User\Desktop\app\node_modules\next\dist\server\load-components.js
+- c:\Users\User\Desktop\app\node_modules\next\dist\build\utils.js
+- c:\Users\User\Desktop\app\node_modules\next\dist\build\swc\options.js
+- c:\Users\User\Desktop\app\node_modules\next\dist\build\swc\index.js
+- c:\Users\User\Desktop\app\node_modules\next\dist\build\next-config-ts\transpile-config.js
+- c:\Users\User\Desktop\app\node_modules\next\dist\server\config.js
+- c:\Users\User\Desktop\app\node_modules\next\dist\server\next.js
+- c:\Users\User\Desktop\app\node_modules\next\dist\server\lib\start-server.js
+    at <unknown> (c:\Users\User\Desktop\app\.next\server\app\api\logs\route.js:237:27)
+    at Object.<anonymous> (c:\Users\User\Desktop\app\.next\server\app\api\logs\route.js:243:3) {
+  code: 'MODULE_NOT_FOUND',
+  requireStack: [Array],
+  page: '/api/logs'
+}
+ ⨯ Error: Cannot find module '../webpack-runtime.js'
+Require stack:
+- c:\Users\User\Desktop\app\.next\server\pages\_document.js
+- c:\Users\User\Desktop\app\node_modules\next\dist\server\require.js
+- c:\Users\User\Desktop\app\node_modules\next\dist\server\load-components.js
+- c:\Users\User\Desktop\app\node_modules\next\dist\build\utils.js
+- c:\Users\User\Desktop\app\node_modules\next\dist\build\swc\options.js
+- c:\Users\User\Desktop\app\node_modules\next\dist\build\swc\index.js
+- c:\Users\User\Desktop\app\node_modules\next\dist\build\next-config-ts\transpile-config.js
+- c:\Users\User\Desktop\app\node_modules\next\dist\server\config.js
+- c:\Users\User\Desktop\app\node_modules\next\dist\server\next.js
+- c:\Users\User\Desktop\app\node_modules\next\dist\server\lib\start-server.js
+    at <unknown> (c:\Users\User\Desktop\app\.next\server\pages\_document.js:60:27)
+    at Object.<anonymous> (c:\Users\User\Desktop\app\.next\server\pages\_document.js:66:3) {
+  code: 'MODULE_NOT_FOUND',
+  requireStack: [Array]
+}
+ POST /api/logs 500 in 83ms
+ ✓ Compiled /api/dashboard/daily in 147ms (312 modules)
+ ⨯ Error: ENOENT: no such file or directory, open 'c:\Users\User\Desktop\app\.next\server\webpack-runtime.js'
+    at <unknown> (c:\Users\User\Desktop\app\.next\server\app\api\dashboard\daily\route.js:259:27)
+    at Object.<anonymous> (c:\Users\User\Desktop\app\.next\server\app\api\dashboard\daily\route.js:265:3) {
+  errno: -4058,
+  code: 'ENOENT',
+  syscall: 'open',
+  path: 'c:\\Users\\User\\Desktop\\app\\.next\\server\\webpack-runtime.js',
+  page: '/api/dashboard/daily'
+}
+ ⨯ Error: Cannot find module '../webpack-runtime.js'
+Require stack:
+- c:\Users\User\Desktop\app\.next\server\pages\_document.js
+- c:\Users\User\Desktop\app\node_modules\next\dist\server\require.js
+- c:\Users\User\Desktop\app\node_modules\next\dist\server\load-components.js
+- c:\Users\User\Desktop\app\node_modules\next\dist\build\utils.js
+- c:\Users\User\Desktop\app\node_modules\next\dist\build\swc\options.js
+- c:\Users\User\Desktop\app\node_modules\next\dist\build\swc\index.js
+- c:\Users\User\Desktop\app\node_modules\next\dist\build\next-config-ts\transpile-config.js
+- c:\Users\User\Desktop\app\node_modules\next\dist\server\config.js
+- c:\Users\User\Desktop\app\node_modules\next\dist\server\next.js
+- c:\Users\User\Desktop\app\node_modules\next\dist\server\lib\start-server.js
+    at <unknown> (c:\Users\User\Desktop\app\.next\server\pages\_document.js:60:27)
+    at Object.<anonymous> (c:\Users\User\Desktop\app\.next\server\pages\_document.js:66:3) {
+  code: 'MODULE_NOT_FOUND',
+  requireStack: [Array]
+}
+ GET /api/dashboard/daily?date=2025-09-23 500 in 229ms
+ ✓ Compiled /favicon.ico in 357ms (314 modules)
+ ⨯ Error: Cannot find module '../../webpack-runtime.js'
+Require stack:
+- c:\Users\User\Desktop\app\.next\server\app\favicon.ico\route.js
+- c:\Users\User\Desktop\app\node_modules\next\dist\server\require.js
+- c:\Users\User\Desktop\app\node_modules\next\dist\server\load-components.js
+- c:\Users\User\Desktop\app\node_modules\next\dist\build\utils.js
+- c:\Users\User\Desktop\app\node_modules\next\dist\build\swc\options.js
+- c:\Users\User\Desktop\app\node_modules\next\dist\build\swc\index.js
+- c:\Users\User\Desktop\app\node_modules\next\dist\build\next-config-ts\transpile-config.js
+- c:\Users\User\Desktop\app\node_modules\next\dist\server\config.js
+- c:\Users\User\Desktop\app\node_modules\next\dist\server\next.js
+- c:\Users\User\Desktop\app\node_modules\next\dist\server\lib\start-server.js
+    at <unknown> (c:\Users\User\Desktop\app\.next\server\app\favicon.ico\route.js:120:27)
+    at Object.<anonymous> (c:\Users\User\Desktop\app\.next\server\app\favicon.ico\route.js:126:3) {
+  code: 'MODULE_NOT_FOUND',
+  requireStack: [Array],
+  page: '/favicon.ico'
+}
+ GET /favicon.ico 500 in 435ms
+ ✓ Compiled in 141ms (197 modules)
+ ⚠ Fast Refresh had to perform a full reload due to a runtime error.
+ ○ Compiling /api/dashboard/daily ...
+ ✓ Compiled /api/dashboard/daily in 597ms (657 modules)
+ GET /api/dashboard/daily?date=2025-09-23 200 in 298ms
+prisma:query SELECT 1
+prisma:query SELECT `main`.`User`.`id`, `main`.`User`.`anon_id`, `main`.`User`.`age`, `main`.`User`.`sex`, `main`.`User`.`timezone`, `main`.`User`.`created_at` FROM `main`.`User` WHERE 1=1 ORDER BY `main`.`User`.`id` ASC LIMIT ? OFFSET ?
+prisma:query SELECT `main`.`User`.`id`, `main`.`User`.`anon_id`, `main`.`User`.`age`, `main`.`User`.`sex`, `main`.`User`.`timezone`, `main`.`User`.`created_at` FROM `main`.`User` WHERE 1=1 ORDER BY `main`.`User`.`id` ASC LIMIT ? OFFSET ?
+prisma:query SELECT `main`.`intake_logs`.`id`, `main`.`intake_logs`.`user_id`, `main`.`intake_logs`.`logged_at`, `main`.`intake_logs`.`notes` FROM `main`.`intake_logs` WHERE (`main`.`intake_logs`.`logged_at` >= ? AND `main`.`intake_logs`.`logged_at` < ?) ORDER BY `main`.`intake_logs`.`logged_at` ASC LIMIT ? OFFSET ?
+prisma:query SELECT `main`.`intake_items`.`id`, `main`.`intake_items`.`intake_log_id`, `main`.`intake_items`.`ingredient_id`, `main`.`intake_items`.`recipe_id`, `main`.`intake_items`.`amount_value`, `main`.`intake_items`.`amount_unit`, `main`.`intake_items`.`notes` FROM `main`.`intake_items` WHERE `main`.`intake_items`.`intake_log_id` IN (?) LIMIT ? OFFSET ?
+prisma:query SELECT `main`.`recipes`.`id`, `main`.`recipes`.`name`, `main`.`recipes`.`category`, `main`.`recipes`.`servings`, `main`.`recipes`.`description`, `main`.`recipes`.`notes`, `main`.`recipes`.`source` FROM `main`.`recipes` WHERE `main`.`recipes`.`id` IN (?) LIMIT ? OFFSET ?
+prisma:query SELECT `main`.`recipe_ingredients`.`recipe_id`, `main`.`recipe_ingredients`.`ingredient_id`, `main`.`recipe_ingredients`.`quantity`, `main`.`recipe_ingredients`.`unit`, `main`.`recipe_ingredients`.`preparation_notes` FROM `main`.`recipe_ingredients` WHERE `main`.`recipe_ingredients`.`recipe_id` IN (?) LIMIT ? OFFSET ?
+prisma:query SELECT `main`.`ingredients`.`id`, `main`.`ingredients`.`name`, `main`.`ingredients`.`category`, `main`.`ingredients`.`default_unit`, `main`.`ingredients`.`notes` FROM `main`.`ingredients` WHERE `main`.`ingredients`.`id` IN (?,?) LIMIT ? OFFSET ?
+prisma:query SELECT `main`.`nutrition_facts`.`id`, `main`.`nutrition_facts`.`ingredient_id`, `main`.`nutrition_facts`.`per_amount_value`, `main`.`nutrition_facts`.`per_amount_unit`, `main`.`nutrition_facts`.`calories_kcal`, `main`.`nutrition_facts`.`protein_g`, `main`.`nutrition_facts`.`fat_g`, `main`.`nutrition_facts`.`carbs_g`, `main`.`nutrition_facts`.`fiber_g`, `main`.`nutrition_facts`.`vitamin_c_mg`, `main`.`nutrition_facts`.`vitamin_a_ug`, `main`.`nutrition_facts`.`iron_mg`, `main`.`nutrition_facts`.`calcium_mg`, `main`.`nutrition_facts`.`potassium_mg`, `main`.`nutrition_facts`.`sodium_mg`, `main`.`nutrition_facts`.`source`, `main`.`nutrition_facts`.`notes`, `main`.`nutrition_facts`.`created_at` FROM `main`.`nutrition_facts` WHERE `main`.`nutrition_facts`.`ingredient_id` IN (?,?) ORDER BY `main`.`nutrition_facts`.`created_at` DESC LIMIT ? OFFSET ?
+prisma:query SELECT `main`.`intake_logs`.`id`, `main`.`intake_logs`.`user_id`, `main`.`intake_logs`.`logged_at`, `main`.`intake_logs`.`notes` FROM `main`.`intake_logs` WHERE (`main`.`intake_logs`.`logged_at` >= ? AND `main`.`intake_logs`.`logged_at` < ?) ORDER BY `main`.`intake_logs`.`logged_at` ASC LIMIT ? OFFSET ?
+prisma:query SELECT `main`.`CustomNutrition`.`id`, `main`.`CustomNutrition`.`intake_item_id`, `main`.`CustomNutrition`.`base_amount_value`, `main`.`CustomNutrition`.`base_amount_unit`, `main`.`CustomNutrition`.`calories_kcal`, `main`.`CustomNutrition`.`protein_g`, `main`.`CustomNutrition`.`fat_g`, `main`.`CustomNutrition`.`carbs_g`, `main`.`CustomNutrition`.`fiber_g`, `main`.`CustomNutrition`.`vitamin_c_mg`, `main`.`CustomNutrition`.`vitamin_a_ug`, `main`.`CustomNutrition`.`iron_mg`, `main`.`CustomNutrition`.`calcium_mg`, `main`.`CustomNutrition`.`potassium_mg`, `main`.`CustomNutrition`.`sodium_mg`, `main`.`CustomNutrition`.`source`, `main`.`CustomNutrition`.`notes` FROM `main`.`CustomNutrition` WHERE `main`.`CustomNutrition`.`intake_item_id` IN (?) LIMIT ? OFFSET ?
+prisma:query SELECT `main`.`intake_items`.`id`, `main`.`intake_items`.`intake_log_id`, `main`.`intake_items`.`ingredient_id`, `main`.`intake_items`.`recipe_id`, `main`.`intake_items`.`amount_value`, `main`.`intake_items`.`amount_unit`, `main`.`intake_items`.`notes` FROM `main`.`intake_items` WHERE `main`.`intake_items`.`intake_log_id` IN (?) LIMIT ? OFFSET ?
+prisma:query SELECT `main`.`recipes`.`id`, `main`.`recipes`.`name`, `main`.`recipes`.`category`, `main`.`recipes`.`servings`, `main`.`recipes`.`description`, `main`.`recipes`.`notes`, `main`.`recipes`.`source` FROM `main`.`recipes` WHERE `main`.`recipes`.`id` IN (?) LIMIT ? OFFSET ?
+prisma:query SELECT `main`.`recipe_ingredients`.`recipe_id`, `main`.`recipe_ingredients`.`ingredient_id`, `main`.`recipe_ingredients`.`quantity`, `main`.`recipe_ingredients`.`unit`, `main`.`recipe_ingredients`.`preparation_notes` FROM `main`.`recipe_ingredients` WHERE `main`.`recipe_ingredients`.`recipe_id` IN (?) LIMIT ? OFFSET ?
+prisma:query SELECT `main`.`ingredients`.`id`, `main`.`ingredients`.`name`, `main`.`ingredients`.`category`, `main`.`ingredients`.`default_unit`, `main`.`ingredients`.`notes` FROM `main`.`ingredients` WHERE `main`.`ingredients`.`id` IN (?,?) LIMIT ? OFFSET ?
+prisma:query SELECT `main`.`nutrition_facts`.`id`, `main`.`nutrition_facts`.`ingredient_id`, `main`.`nutrition_facts`.`per_amount_value`, `main`.`nutrition_facts`.`per_amount_unit`, `main`.`nutrition_facts`.`calories_kcal`, `main`.`nutrition_facts`.`protein_g`, `main`.`nutrition_facts`.`fat_g`, `main`.`nutrition_facts`.`carbs_g`, `main`.`nutrition_facts`.`fiber_g`, `main`.`nutrition_facts`.`vitamin_c_mg`, `main`.`nutrition_facts`.`vitamin_a_ug`, `main`.`nutrition_facts`.`iron_mg`, `main`.`nutrition_facts`.`calcium_mg`, `main`.`nutrition_facts`.`potassium_mg`, `main`.`nutrition_facts`.`sodium_mg`, `main`.`nutrition_facts`.`source`, `main`.`nutrition_facts`.`notes`, `main`.`nutrition_facts`.`created_at` FROM `main`.`nutrition_facts` WHERE `main`.`nutrition_facts`.`ingredient_id` IN (?,?) ORDER BY `main`.`nutrition_facts`.`created_at` DESC LIMIT ? OFFSET ?
+prisma:query SELECT `main`.`CustomNutrition`.`id`, `main`.`CustomNutrition`.`intake_item_id`, `main`.`CustomNutrition`.`base_amount_value`, `main`.`CustomNutrition`.`base_amount_unit`, `main`.`CustomNutrition`.`calories_kcal`, `main`.`CustomNutrition`.`protein_g`, `main`.`CustomNutrition`.`fat_g`, `main`.`CustomNutrition`.`carbs_g`, `main`.`CustomNutrition`.`fiber_g`, `main`.`CustomNutrition`.`vitamin_c_mg`, `main`.`CustomNutrition`.`vitamin_a_ug`, `main`.`CustomNutrition`.`iron_mg`, `main`.`CustomNutrition`.`calcium_mg`, `main`.`CustomNutrition`.`potassium_mg`, `main`.`CustomNutrition`.`sodium_mg`, `main`.`CustomNutrition`.`source`, `main`.`CustomNutrition`.`notes` FROM `main`.`CustomNutrition` WHERE `main`.`CustomNutrition`.`intake_item_id` IN (?) LIMIT ? OFFSET ?
+prisma:query SELECT `main`.`RDIStandard`.`id`, `main`.`RDIStandard`.`nutrient`, `main`.`RDIStandard`.`unit`, `main`.`RDIStandard`.`sex`, `main`.`RDIStandard`.`age_min`, `main`.`RDIStandard`.`age_max`, `main`.`RDIStandard`.`value_per_day`, `main`.`RDIStandard`.`region`, `main`.`RDIStandard`.`source`, `main`.`RDIStandard`.`created_at` FROM `main`.`RDIStandard` WHERE (`main`.`RDIStandard`.`nutrient` IN (?,?,?,?,?,?,?,?,?,?,?) AND (`main`.`RDIStandard`.`region` = ? OR `main`.`RDIStandard`.`region` = ? OR `main`.`RDIStandard`.`region` IS NULL) AND (`main`.`RDIStandard`.`sex` = ? OR `main`.`RDIStandard`.`sex` IS NULL) AND (`main`.`RDIStandard`.`age_min` IS NULL OR `main`.`RDIStandard`.`age_min` <= ?) AND (`main`.`RDIStandard`.`age_max` IS NULL OR `main`.`RDIStandard`.`age_max` >= ?)) LIMIT ? OFFSET ?
+prisma:query SELECT `main`.`RDIStandard`.`id`, `main`.`RDIStandard`.`nutrient`, `main`.`RDIStandard`.`unit`, `main`.`RDIStandard`.`sex`, `main`.`RDIStandard`.`age_min`, `main`.`RDIStandard`.`age_max`, `main`.`RDIStandard`.`value_per_day`, `main`.`RDIStandard`.`region`, `main`.`RDIStandard`.`source`, `main`.`RDIStandard`.`created_at` FROM `main`.`RDIStandard` WHERE (`main`.`RDIStandard`.`nutrient` IN (?,?,?,?,?,?,?,?,?,?,?) AND (`main`.`RDIStandard`.`region` = ? OR `main`.`RDIStandard`.`region` = ? OR `main`.`RDIStandard`.`region` IS NULL) AND (`main`.`RDIStandard`.`sex` = ? OR `main`.`RDIStandard`.`sex` IS NULL) AND (`main`.`RDIStandard`.`age_min` IS NULL OR `main`.`RDIStandard`.`age_min` <= ?) AND (`main`.`RDIStandard`.`age_max` IS NULL OR `main`.`RDIStandard`.`age_max` >= ?)) LIMIT ? OFFSET ?
+prisma:query SELECT `main`.`User`.`id`, `main`.`User`.`anon_id`, `main`.`User`.`age`, `main`.`User`.`sex`, `main`.`User`.`timezone`, `main`.`User`.`created_at` FROM `main`.`User` WHERE 1=1 ORDER BY `main`.`User`.`id` ASC LIMIT ? OFFSET ?
+prisma:query SELECT `main`.`intake_logs`.`id`, `main`.`intake_logs`.`user_id`, `main`.`intake_logs`.`logged_at`, `main`.`intake_logs`.`notes` FROM `main`.`intake_logs` WHERE (`main`.`intake_logs`.`logged_at` >= ? AND `main`.`intake_logs`.`logged_at` < ?) ORDER BY `main`.`intake_logs`.`logged_at` ASC LIMIT ? OFFSET ?
+prisma:query SELECT `main`.`intake_items`.`id`, `main`.`intake_items`.`intake_log_id`, `main`.`intake_items`.`ingredient_id`, `main`.`intake_items`.`recipe_id`, `main`.`intake_items`.`amount_value`, `main`.`intake_items`.`amount_unit`, `main`.`intake_items`.`notes` FROM `main`.`intake_items` WHERE `main`.`intake_items`.`intake_log_id` IN (?) LIMIT ? OFFSET ?
+prisma:query SELECT `main`.`recipes`.`id`, `main`.`recipes`.`name`, `main`.`recipes`.`category`, `main`.`recipes`.`servings`, `main`.`recipes`.`description`, `main`.`recipes`.`notes`, `main`.`recipes`.`source` FROM `main`.`recipes` WHERE `main`.`recipes`.`id` IN (?) LIMIT ? OFFSET ?
+prisma:query SELECT `main`.`recipe_ingredients`.`recipe_id`, `main`.`recipe_ingredients`.`ingredient_id`, `main`.`recipe_ingredients`.`quantity`, `main`.`recipe_ingredients`.`unit`, `main`.`recipe_ingredients`.`preparation_notes` FROM `main`.`recipe_ingredients` WHERE `main`.`recipe_ingredients`.`recipe_id` IN (?) LIMIT ? OFFSET ?
+prisma:query SELECT `main`.`ingredients`.`id`, `main`.`ingredients`.`name`, `main`.`ingredients`.`category`, `main`.`ingredients`.`default_unit`, `main`.`ingredients`.`notes` FROM `main`.`ingredients` WHERE `main`.`ingredients`.`id` IN (?,?) LIMIT ? OFFSET ?
+prisma:query SELECT `main`.`nutrition_facts`.`id`, `main`.`nutrition_facts`.`ingredient_id`, `main`.`nutrition_facts`.`per_amount_value`, `main`.`nutrition_facts`.`per_amount_unit`, `main`.`nutrition_facts`.`calories_kcal`, `main`.`nutrition_facts`.`protein_g`, `main`.`nutrition_facts`.`fat_g`, `main`.`nutrition_facts`.`carbs_g`, `main`.`nutrition_facts`.`fiber_g`, `main`.`nutrition_facts`.`vitamin_c_mg`, `main`.`nutrition_facts`.`vitamin_a_ug`, `main`.`nutrition_facts`.`iron_mg`, `main`.`nutrition_facts`.`calcium_mg`, `main`.`nutrition_facts`.`potassium_mg`, `main`.`nutrition_facts`.`sodium_mg`, `main`.`nutrition_facts`.`source`, `main`.`nutrition_facts`.`notes`, `main`.`nutrition_facts`.`created_at` FROM `main`.`nutrition_facts` WHERE `main`.`nutrition_facts`.`ingredient_id` IN (?,?) ORDER BY `main`.`nutrition_facts`.`created_at` DESC LIMIT ? OFFSET ?
+prisma:query SELECT `main`.`CustomNutrition`.`id`, `main`.`CustomNutrition`.`intake_item_id`, `main`.`CustomNutrition`.`base_amount_value`, `main`.`CustomNutrition`.`base_amount_unit`, `main`.`CustomNutrition`.`calories_kcal`, `main`.`CustomNutrition`.`protein_g`, `main`.`CustomNutrition`.`fat_g`, `main`.`CustomNutrition`.`carbs_g`, `main`.`CustomNutrition`.`fiber_g`, `main`.`CustomNutrition`.`vitamin_c_mg`, `main`.`CustomNutrition`.`vitamin_a_ug`, `main`.`CustomNutrition`.`iron_mg`, `main`.`CustomNutrition`.`calcium_mg`, `main`.`CustomNutrition`.`potassium_mg`, `main`.`CustomNutrition`.`sodium_mg`, `main`.`CustomNutrition`.`source`, `main`.`CustomNutrition`.`notes` FROM `main`.`CustomNutrition` WHERE `main`.`CustomNutrition`.`intake_item_id` IN (?) LIMIT ? OFFSET ?
+prisma:query SELECT `main`.`RDIStandard`.`id`, `main`.`RDIStandard`.`nutrient`, `main`.`RDIStandard`.`unit`, `main`.`RDIStandard`.`sex`, `main`.`RDIStandard`.`age_min`, `main`.`RDIStandard`.`age_max`, `main`.`RDIStandard`.`value_per_day`, `main`.`RDIStandard`.`region`, `main`.`RDIStandard`.`source`, `main`.`RDIStandard`.`created_at` FROM `main`.`RDIStandard` WHERE (`main`.`RDIStandard`.`nutrient` IN (?,?,?,?,?,?,?,?,?,?,?) AND (`main`.`RDIStandard`.`region` = ? OR `main`.`RDIStandard`.`region` = ? OR `main`.`RDIStandard`.`region` IS NULL) AND (`main`.`RDIStandard`.`sex` = ? OR `main`.`RDIStandard`.`sex` IS NULL) AND (`main`.`RDIStandard`.`age_min` IS NULL OR `main`.`RDIStandard`.`age_min` <= ?) AND (`main`.`RDIStandard`.`age_max` IS NULL OR `main`.`RDIStandard`.`age_max` >= ?)) LIMIT ? OFFSET ?
+ GET /api/dashboard/daily?date=2025-09-23 200 in 181ms
+ ✓ Compiled /favicon.ico in 98ms (312 modules)
+ GET /favicon.ico 200 in 186ms
+ ✓ Compiled in 118ms (197 modules)
+^C^C

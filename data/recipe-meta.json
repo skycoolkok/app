@@ -1,0 +1,129 @@
+{
+  "3": {
+    "flavor": [
+      "FRESH",
+      "SWEET"
+    ],
+    "functional": [
+      "FOR_DIET"
+    ]
+  },
+  "4": {
+    "functional": [
+      "FOR_DIET",
+      "ENERGY"
+    ],
+    "flavor": [
+      "FRESH",
+      "SWEET"
+    ]
+  },
+  "5": {
+    "functional": [
+      "FOR_BEAUTY",
+      "FOR_DIET"
+    ],
+    "flavor": [
+      "FRESH",
+      "SOUR"
+    ]
+  },
+  "6": {
+    "functional": [
+      "DETOX"
+    ],
+    "flavor": [
+      "HERBAL",
+      "FRESH"
+    ]
+  },
+  "7": {
+    "functional": [
+      "ENERGY"
+    ],
+    "flavor": [
+      "STRONG",
+      "BITTER"
+    ]
+  },
+  "8": {
+    "functional": [
+      "FOR_BEAUTY",
+      "ENERGY"
+    ],
+    "flavor": [
+      "SWEET"
+    ]
+  },
+  "9": {
+    "functional": [
+      "FOR_DIET"
+    ],
+    "flavor": [
+      "FRESH"
+    ]
+  },
+  "10": {
+    "functional": [
+      "DETOX",
+      "ENERGY"
+    ],
+    "flavor": [
+      "SWEET",
+      "HERBAL"
+    ]
+  },
+  "11": {
+    "functional": [
+      "ENERGY"
+    ],
+    "flavor": [
+      "HERBAL",
+      "SWEET"
+    ]
+  },
+  "12": {
+    "functional": [
+      "FOR_DIET"
+    ],
+    "flavor": [
+      "FRESH",
+      "SWEET"
+    ]
+  },
+  "13": {
+    "functional": [
+      "ENERGY"
+    ],
+    "flavor": [
+      "SWEET",
+      "STRONG"
+    ]
+  },
+  "14": {
+    "functional": [
+      "ENERGY"
+    ],
+    "flavor": [
+      "SWEET"
+    ]
+  },
+  "15": {
+    "functional": [
+      "DETOX"
+    ],
+    "flavor": [
+      "FRESH",
+      "HERBAL"
+    ]
+  },
+  "16": {
+    "functional": [
+      "ENERGY"
+    ],
+    "flavor": [
+      "SWEET",
+      "STRONG"
+    ]
+  }
+}

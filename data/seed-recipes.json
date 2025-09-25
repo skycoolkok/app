@@ -1,0 +1,577 @@
+[
+  {
+    "name": "Pineapple Mint Cooler",
+    "category": "Refreshing",
+    "servings": 2,
+    "description": "Bright pineapple juice blended with mint and coconut water for quick hydration.",
+    "source": "seed",
+    "ingredients": [
+      {
+        "name": "Pineapple",
+        "quantity": 350,
+        "unit": "g"
+      },
+      {
+        "name": "Fresh Mint",
+        "quantity": 10,
+        "unit": "g"
+      },
+      {
+        "name": "Coconut Water",
+        "quantity": 300,
+        "unit": "ml"
+      },
+      {
+        "name": "Lime",
+        "quantity": 1,
+        "unit": "piece"
+      }
+    ],
+    "steps": [
+      "Peel and cube the pineapple.",
+      "Blend pineapple with coconut water until smooth.",
+      "Add mint leaves and lime juice, pulse briefly.",
+      "Serve over ice and garnish with extra mint."
+    ],
+    "tags": {
+      "functional": [
+        "FOR_DIET",
+        "ENERGY"
+      ],
+      "flavor": [
+        "FRESH",
+        "SWEET"
+      ]
+    }
+  },
+  {
+    "name": "Citrus Carrot Glow",
+    "category": "Beauty",
+    "servings": 2,
+    "description": "Carrot, orange, and ginger create a vitamin-rich glow drink.",
+    "source": "seed",
+    "ingredients": [
+      {
+        "name": "Carrot",
+        "quantity": 250,
+        "unit": "g"
+      },
+      {
+        "name": "Orange",
+        "quantity": 2,
+        "unit": "piece"
+      },
+      {
+        "name": "Lemon",
+        "quantity": 0.5,
+        "unit": "piece"
+      },
+      {
+        "name": "Fresh Ginger",
+        "quantity": 5,
+        "unit": "g"
+      }
+    ],
+    "steps": [
+      "Peel the carrots and cut into chunks.",
+      "Juice the oranges and lemon.",
+      "Blend carrots with citrus juice and ginger until silky.",
+      "Strain if desired for a smoother finish."
+    ],
+    "tags": {
+      "functional": [
+        "FOR_BEAUTY",
+        "FOR_DIET"
+      ],
+      "flavor": [
+        "FRESH",
+        "SOUR"
+      ]
+    }
+  },
+  {
+    "name": "Green Detox Kick",
+    "category": "Detox",
+    "servings": 1,
+    "description": "A zesty green juice with kale, cucumber, and lime to reset digestion.",
+    "source": "seed",
+    "ingredients": [
+      {
+        "name": "Kale",
+        "quantity": 60,
+        "unit": "g"
+      },
+      {
+        "name": "Cucumber",
+        "quantity": 180,
+        "unit": "g"
+      },
+      {
+        "name": "Green Apple",
+        "quantity": 1,
+        "unit": "piece"
+      },
+      {
+        "name": "Lime",
+        "quantity": 0.5,
+        "unit": "piece"
+      },
+      {
+        "name": "Celery",
+        "quantity": 80,
+        "unit": "g"
+      }
+    ],
+    "steps": [
+      "Wash and chop all produce.",
+      "Blend with cold water as needed until smooth.",
+      "Serve immediately with lime zest on top."
+    ],
+    "tags": {
+      "functional": [
+        "DETOX"
+      ],
+      "flavor": [
+        "HERBAL",
+        "FRESH"
+      ]
+    }
+  },
+  {
+    "name": "Spicy Ginger Beet",
+    "category": "Energy",
+    "servings": 2,
+    "description": "Beetroot and ginger bring circulation support with a peppery finish.",
+    "source": "seed",
+    "ingredients": [
+      {
+        "name": "Beetroot",
+        "quantity": 220,
+        "unit": "g"
+      },
+      {
+        "name": "Apple",
+        "quantity": 1,
+        "unit": "piece"
+      },
+      {
+        "name": "Carrot",
+        "quantity": 120,
+        "unit": "g"
+      },
+      {
+        "name": "Fresh Ginger",
+        "quantity": 8,
+        "unit": "g"
+      },
+      {
+        "name": "Black Pepper",
+        "quantity": 1,
+        "unit": "pinch"
+      }
+    ],
+    "steps": [
+      "Peel the beetroot and carrot.",
+      "Juice beetroot, carrot, and apple together.",
+      "Stir in grated ginger and a pinch of black pepper.",
+      "Serve chilled."
+    ],
+    "tags": {
+      "functional": [
+        "ENERGY"
+      ],
+      "flavor": [
+        "STRONG",
+        "BITTER"
+      ]
+    }
+  },
+  {
+    "name": "Berry Antioxidant Burst",
+    "category": "Immunity",
+    "servings": 2,
+    "description": "Mixed berries with chia seeds deliver antioxidants and fiber.",
+    "source": "seed",
+    "ingredients": [
+      {
+        "name": "Blueberry",
+        "quantity": 120,
+        "unit": "g"
+      },
+      {
+        "name": "Strawberry",
+        "quantity": 150,
+        "unit": "g"
+      },
+      {
+        "name": "Raspberry",
+        "quantity": 80,
+        "unit": "g"
+      },
+      {
+        "name": "Chia Seed",
+        "quantity": 14,
+        "unit": "g"
+      },
+      {
+        "name": "Almond Milk",
+        "quantity": 250,
+        "unit": "ml"
+      }
+    ],
+    "steps": [
+      "Rinse all berries.",
+      "Blend berries with almond milk until creamy.",
+      "Stir in chia seeds and chill for five minutes.",
+      "Serve topped with extra berries."
+    ],
+    "tags": {
+      "functional": [
+        "FOR_BEAUTY",
+        "ENERGY"
+      ],
+      "flavor": [
+        "SWEET"
+      ]
+    }
+  },
+  {
+    "name": "Coconut Hydration Splash",
+    "category": "Hydration",
+    "servings": 1,
+    "description": "Coconut water, cucumber, and lime keep electrolytes balanced.",
+    "source": "seed",
+    "ingredients": [
+      {
+        "name": "Coconut Water",
+        "quantity": 320,
+        "unit": "ml"
+      },
+      {
+        "name": "Cucumber",
+        "quantity": 120,
+        "unit": "g"
+      },
+      {
+        "name": "Lime",
+        "quantity": 0.5,
+        "unit": "piece"
+      },
+      {
+        "name": "Sea Salt",
+        "quantity": 1,
+        "unit": "pinch"
+      }
+    ],
+    "steps": [
+      "Slice cucumber and blend with coconut water.",
+      "Add lime juice and a pinch of sea salt.",
+      "Serve over crushed ice."
+    ],
+    "tags": {
+      "functional": [
+        "FOR_DIET"
+      ],
+      "flavor": [
+        "FRESH"
+      ]
+    }
+  },
+  {
+    "name": "Orange Turmeric Shield",
+    "category": "Immunity",
+    "servings": 2,
+    "description": "A golden blend of orange, carrot, turmeric, and pepper for better absorption.",
+    "source": "seed",
+    "ingredients": [
+      {
+        "name": "Orange",
+        "quantity": 2,
+        "unit": "piece"
+      },
+      {
+        "name": "Carrot",
+        "quantity": 200,
+        "unit": "g"
+      },
+      {
+        "name": "Turmeric Root",
+        "quantity": 6,
+        "unit": "g"
+      },
+      {
+        "name": "Black Pepper",
+        "quantity": 1,
+        "unit": "pinch"
+      }
+    ],
+    "steps": [
+      "Juice oranges and carrots together.",
+      "Blend juice with turmeric root.",
+      "Add a pinch of black pepper before serving."
+    ],
+    "tags": {
+      "functional": [
+        "DETOX",
+        "ENERGY"
+      ],
+      "flavor": [
+        "SWEET",
+        "HERBAL"
+      ]
+    }
+  },
+  {
+    "name": "Matcha Pear Reviver",
+    "category": "Morning",
+    "servings": 1,
+    "description": "Matcha green tea shaken with pear and spinach for a caffeine lift.",
+    "source": "seed",
+    "ingredients": [
+      {
+        "name": "Pear",
+        "quantity": 1,
+        "unit": "piece"
+      },
+      {
+        "name": "Spinach",
+        "quantity": 40,
+        "unit": "g"
+      },
+      {
+        "name": "Matcha Powder",
+        "quantity": 2,
+        "unit": "g"
+      },
+      {
+        "name": "Water",
+        "quantity": 200,
+        "unit": "ml"
+      },
+      {
+        "name": "Honey",
+        "quantity": 10,
+        "unit": "g"
+      }
+    ],
+    "steps": [
+      "Blend pear with water until smooth.",
+      "Add spinach and honey, blend again.",
+      "Whisk matcha with a splash of warm water and fold into the juice.",
+      "Serve over ice."
+    ],
+    "tags": {
+      "functional": [
+        "ENERGY"
+      ],
+      "flavor": [
+        "HERBAL",
+        "SWEET"
+      ]
+    }
+  },
+  {
+    "name": "Watermelon Basil Chill",
+    "category": "Cooling",
+    "servings": 2,
+    "description": "Juicy watermelon with basil and lime for hot afternoons.",
+    "source": "seed",
+    "ingredients": [
+      {
+        "name": "Watermelon",
+        "quantity": 500,
+        "unit": "g"
+      },
+      {
+        "name": "Fresh Basil",
+        "quantity": 8,
+        "unit": "g"
+      },
+      {
+        "name": "Lime",
+        "quantity": 1,
+        "unit": "piece"
+      }
+    ],
+    "steps": [
+      "Cube watermelon and remove seeds.",
+      "Blend with basil leaves and lime juice.",
+      "Serve chilled with extra basil."
+    ],
+    "tags": {
+      "functional": [
+        "FOR_DIET"
+      ],
+      "flavor": [
+        "FRESH",
+        "SWEET"
+      ]
+    }
+  },
+  {
+    "name": "Sweet Potato Spice Shake",
+    "category": "Recovery",
+    "servings": 2,
+    "description": "Roasted sweet potato with cinnamon and almond milk for post-workout recovery.",
+    "source": "seed",
+    "ingredients": [
+      {
+        "name": "Sweet Potato",
+        "quantity": 220,
+        "unit": "g"
+      },
+      {
+        "name": "Almond Milk",
+        "quantity": 260,
+        "unit": "ml"
+      },
+      {
+        "name": "Cinnamon",
+        "quantity": 1,
+        "unit": "tsp"
+      },
+      {
+        "name": "Vanilla Extract",
+        "quantity": 2,
+        "unit": "ml"
+      }
+    ],
+    "steps": [
+      "Roast sweet potato until soft, then cool slightly.",
+      "Blend with almond milk, cinnamon, and vanilla extract.",
+      "Serve warm or chilled, topped with extra cinnamon."
+    ],
+    "tags": {
+      "functional": [
+        "ENERGY"
+      ],
+      "flavor": [
+        "SWEET",
+        "STRONG"
+      ]
+    }
+  },
+  {
+    "name": "Grape Soy Boost",
+    "category": "Energy",
+    "servings": 1,
+    "description": "Soy milk blended with grapes and flaxseed for protein and omega-3s.",
+    "source": "seed",
+    "ingredients": [
+      {
+        "name": "Red Grapes",
+        "quantity": 200,
+        "unit": "g"
+      },
+      {
+        "name": "Soy Milk",
+        "quantity": 250,
+        "unit": "ml"
+      },
+      {
+        "name": "Ground Flaxseed",
+        "quantity": 12,
+        "unit": "g"
+      }
+    ],
+    "steps": [
+      "Blend grapes until smooth.",
+      "Add soy milk and flaxseed, blend again.",
+      "Serve immediately for best flavour."
+    ],
+    "tags": {
+      "functional": [
+        "ENERGY"
+      ],
+      "flavor": [
+        "SWEET"
+      ]
+    }
+  },
+  {
+    "name": "Apple Celery Refresher",
+    "category": "Daily",
+    "servings": 2,
+    "description": "A crisp blend of apple, celery, and parsley to refresh the palate.",
+    "source": "seed",
+    "ingredients": [
+      {
+        "name": "Apple",
+        "quantity": 2,
+        "unit": "piece"
+      },
+      {
+        "name": "Celery",
+        "quantity": 140,
+        "unit": "g"
+      },
+      {
+        "name": "Parsley",
+        "quantity": 12,
+        "unit": "g"
+      },
+      {
+        "name": "Lemon",
+        "quantity": 0.5,
+        "unit": "piece"
+      }
+    ],
+    "steps": [
+      "Chop apples and celery.",
+      "Juice together with parsley and lemon.",
+      "Stir and serve cold."
+    ],
+    "tags": {
+      "functional": [
+        "DETOX"
+      ],
+      "flavor": [
+        "FRESH",
+        "HERBAL"
+      ]
+    }
+  },
+  {
+    "name": "Peanut Banana Recovery",
+    "category": "Recovery",
+    "servings": 1,
+    "description": "Protein-packed banana shake with peanut butter and oats.",
+    "source": "seed",
+    "ingredients": [
+      {
+        "name": "Banana",
+        "quantity": 1,
+        "unit": "piece"
+      },
+      {
+        "name": "Peanut Butter",
+        "quantity": 32,
+        "unit": "g"
+      },
+      {
+        "name": "Rolled Oats",
+        "quantity": 20,
+        "unit": "g"
+      },
+      {
+        "name": "Skim Milk",
+        "quantity": 250,
+        "unit": "ml"
+      }
+    ],
+    "steps": [
+      "Add all ingredients to a blender.",
+      "Blend on high until creamy.",
+      "Serve topped with crushed peanuts if desired."
+    ],
+    "tags": {
+      "functional": [
+        "ENERGY"
+      ],
+      "flavor": [
+        "SWEET",
+        "STRONG"
+      ]
+    }
+  }
+]

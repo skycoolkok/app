@@ -1,0 +1,36 @@
+{
+    "recipes":  [
+                    {
+                        "name":  "胡蘿蔔柳橙汁",
+                        "source":  "seed",
+                        "description":  "簡單健康的胡蘿蔔柳橙汁",
+                        "servings":  1,
+                        "ingredients":  [
+                                            {
+                                                "quantity":  100,
+                                                "name":  "胡蘿蔔",
+                                                "unit":  "g"
+                                            },
+                                            {
+                                                "quantity":  200,
+                                                "name":  "柳橙",
+                                                "unit":  "ml"
+                                            }
+                                        ],
+                        "category":  "美容排毒",
+                        "notes":  null
+                    }
+                ],
+    "ingredients":  [
+                        {
+                            "category":  "蔬菜",
+                            "name":  "胡蘿蔔",
+                            "default_unit":  "g"
+                        },
+                        {
+                            "category":  "水果",
+                            "name":  "柳橙",
+                            "default_unit":  "ml"
+                        }
+                    ]
+}
